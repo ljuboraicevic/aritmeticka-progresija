@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test metode nadjiKorak, klase Korak.
- * @author ljubo
+ * @author ljubo raicevic
  */
 public class KorakTest {
     

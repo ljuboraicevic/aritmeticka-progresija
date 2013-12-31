@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test metode pronadji, klase AritmetickaProgresija.
- * @author ljubo
+ * @author ljubo raicevic
  */
 public class AritmetickaProgresijaTest {
     
