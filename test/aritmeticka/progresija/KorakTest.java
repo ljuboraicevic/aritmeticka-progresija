@@ -1,45 +1,70 @@
 package aritmeticka.progresija;
 
+import java.util.Collection;
+import java.util.Arrays;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 /**
- * Test metode nadjiKorak, klase Korak.
- * @author ljubo raicevic
+ *
+ * @author Ljubo Raicevic <rljubo90@gmail.com>
  */
+
+//mora da stoji @RunWith... da bi JUnit znao da je parametarizovani test
+@RunWith(value = Parameterized.class)
 public class KorakTest {
     
-    public KorakTest() {}
-
+    private final int niz[];
+    private final int ocekivanaVrednost;
+    private Korak korak;
+    
     /**
-     * Test metode nadjiKorak, klase Korak.
+     * Konstruktor testa
+     * @param pNiz zadati niz
+     * @param pOcekivanaVrednost ocekivana rezultujuca vrednost
      */
-    @Test
-    public void testNadjiKorak() {
-        System.out.println("nadjiKorak");
+    //konstruktor treba da prima tacno onoliko parametara koliko metoda
+    //za parametarizaciju salje (metoda za param. je dole "parametri")
+    public KorakTest(int[] pNiz, int pOcekivanaVrednost) {
+        this.niz = pNiz;
+        this.ocekivanaVrednost = pOcekivanaVrednost;
+    }
+    
+    //inicijalizacija testa; u ovom slucaju pravi novi objekat klase Korak
+    @Before
+    public void initialize() {
+        korak = new Korak(niz);
+    }
+    
+    //parametri za test; svaki clan return niza ce biti jedan test slucaj - to
+    //znaci da ce se ceo ovaj test ponoviti onoliko puta koliko retrun niz ima
+    //clanova, u ovom slucaju 4. svaki clan return niza je po jedan test slucaj
+    //i to u ovom primeru: prvi clan je zadati niz, a drugi clan ocekivana
+    //vrednost (bas kao u konstruktoru testa). svaki od elemenata return niza 
+    //moze da ima bilo koji broj clanova (ne samo 2 kao u ovom primeru), samo 
+    //je bitno da konstruktor OVOG TESTA prima isti broj argumenata sa istim
+    //tipom podatka
+    @Parameters
+    public static Collection parametri() {
+        return Arrays.asList(new Object[][] {
+            //zadati niz, ocekivana vrednost
+            { new int[] {1, 2, 3, 4, 6, 7, 8}, 1 },
+            { new int[] {10, 30, 50, 90, 110}, 20 },
+            { new int[] {7, 13, 25}, 6 },
+            { new int[] {-4, -2, 0, 4, 6, 8, 10}, 2 }
+        });
+    }
 
-        //test nizovi
-        int niz1[] = {1, 2, 3, 4, 6, 7, 8};
-        int niz2[] = {10, 30, 50, 90, 110};
-        int niz3[] = {7, 13, 25};
-        int niz4[] = {-4, -2, 0, 4, 6, 8, 10};
-        int niz5[] = {1, 2, 4, 5, 6, 7, 8};
-        int niz6[] = {1, 3, 4, 5, 6, 7, 8};
-        
-        //pravim sest Korak objekata, svaki sa svojim test nizom
-        Korak k1 = new Korak(niz1);
-        Korak k2 = new Korak(niz2);
-        Korak k3 = new Korak(niz3);
-        Korak k4 = new Korak(niz4);
-        Korak k5 = new Korak(niz5);
-        Korak k6 = new Korak(niz6);        
-        
-        //isprobati sve slucaje
-        assertEquals(1, k1.nadjiKorak());
-        assertEquals(20, k2.nadjiKorak());
-        assertEquals(6, k3.nadjiKorak());
-        assertEquals(2, k4.nadjiKorak());
-        assertEquals(1, k5.nadjiKorak());
-        assertEquals(1, k6.nadjiKorak());
+    //sam test isprobava SAMO JEDAN PAR - NIZ, OCEKIVANA VREDNOST; to je zato sto
+    //se test izvrsava vise puta, tj svaki clan return niza iz metode za 
+    //parametarizaciju je po jedno izvrsenje ovog testa
+    @Test
+    public void daLiJeDobarKorak() {
+        System.out.println("nadjiKorak - za korak: " + ocekivanaVrednost);
+        assertEquals(ocekivanaVrednost, korak.nadjiKorak());
     }
 }

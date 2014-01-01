@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 
 /**
  * Test metode pronadji, klase AritmetickaProgresija.
- * @author ljubo raicevic
+ * Ne koristi se parametarizovano testiranje!
+ * @author Ljubo Raicevic <rljubo90@gmail.com>
  */
 public class AritmetickaProgresijaTest {
     

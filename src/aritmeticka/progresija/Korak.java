@@ -3,7 +3,7 @@ package aritmeticka.progresija;
 /**
  * Klasa koja za zadati aritmetciki niz sa jednim elementom koji nedostaje
  * pronalazi korak.
- * @author ljubo raicevic
+ * @author Ljubo Raicevic <rljubo90@gmail.com>
  */
 public class Korak {
 

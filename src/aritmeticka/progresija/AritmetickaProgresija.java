@@ -2,7 +2,7 @@ package aritmeticka.progresija;
 
 /**
  * Zadati su aritmeticki nizovi integera. Pronaci clan koji nedostaje.
- * @author ljubo raicevic
+ * @author Ljubo Raicevic <rljubo90@gmail.com>
  */
 public class AritmetickaProgresija {
     /**
