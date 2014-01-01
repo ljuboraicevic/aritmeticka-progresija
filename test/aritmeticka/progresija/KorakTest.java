@@ -10,7 +10,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 /**
- *
+ * Test za klasu Korak.
  * @author Ljubo Raicevic <rljubo90@gmail.com>
  */
 
@@ -18,6 +18,8 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(value = Parameterized.class)
 public class KorakTest {
     
+    //privatne varijable test klase KorakTest, cije vrednosti ce se koristiti
+    //u samo jednoj iteraciji parametarizovanog testiranja
     private final int niz[];
     private final int ocekivanaVrednost;
     private Korak korak;
@@ -41,13 +43,13 @@ public class KorakTest {
     }
     
     //parametri za test; svaki clan return niza ce biti jedan test slucaj - to
-    //znaci da ce se ceo ovaj test ponoviti onoliko puta koliko retrun niz ima
+    //znaci da ce se CEO ovaj test ponoviti onoliko puta koliko retrun niz ima
     //clanova, u ovom slucaju 4. svaki clan return niza je po jedan test slucaj
     //i to u ovom primeru: prvi clan je zadati niz, a drugi clan ocekivana
     //vrednost (bas kao u konstruktoru testa). svaki od elemenata return niza 
     //moze da ima bilo koji broj clanova (ne samo 2 kao u ovom primeru), samo 
-    //je bitno da konstruktor OVOG TESTA prima isti broj argumenata sa istim
-    //tipom podatka
+    //je bitno da konstruktor OVOG TESTA (a ne klase koja se testira) prima isti
+    //broj argumenata sa istim tipom podatka
     @Parameters
     public static Collection parametri() {
         return Arrays.asList(new Object[][] {
@@ -59,8 +61,8 @@ public class KorakTest {
         });
     }
 
-    //sam test isprobava SAMO JEDAN PAR - NIZ, OCEKIVANA VREDNOST; to je zato sto
-    //se test izvrsava vise puta, tj svaki clan return niza iz metode za 
+    //sama test metoda isprobava SAMO JEDAN PAR - NIZ, OCEKIVANA VREDNOST, zato
+    //sto se test izvrsava vise puta, tj svaki clan return niza iz metode za 
     //parametarizaciju je po jedno izvrsenje ovog testa
     @Test
     public void daLiJeDobarKorak() {
